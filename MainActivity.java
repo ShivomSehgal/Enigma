@@ -39,13 +39,14 @@ public class MainActivity extends AppCompatActivity {
 
     public static String caesarCypherEncryptor(String string, int key) {
         char[] letters=new char[string.length()];
-        int shift=key%26;
-        String alphabets="abcdefghijklmnopqrstuvwxyz";
+        String alphabets="a!b@c#d$e%f^g&h*i-j+k<l>m?n/o;p:q{r}s[t]u`v|w~x,y.z";
+        int shift=key%alphabets.length();
+        
 
         for(int i=0; i<string.length(); i++){
             letters[i] = shifter(string.charAt(i),alphabets,shift);
         }
-        return new String(letters);
+        return new String(letters) + runLengthEncoding(new String(letters));
     }
 
     public static char shifter(char letter, String alphabets, int shift){
